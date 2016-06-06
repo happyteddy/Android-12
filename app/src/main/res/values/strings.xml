@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Android 12</string>
+
+    <!-- Navigation drawer -->
+    <string-array name="title">
+        <item>Main</item>
+        <item>Tabs</item>
+        <item>Notification</item>
+    </string-array>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
+    <!-- main fragment-->
+    <string name="default_number">0</string>
+
+    <!-- notification fragment-->
+    <string name="ping_text">Set Seconds Until Ping</string>
+    <string name="done_snoozing">Done Snoozing.</string>
+    <string name="seconds_default">10</string>
+    <string name="reminder_label">Reminder Text</string>
+    <string name="reminder_text">Don\'t forget!</string>
+    <string name="ping">Ping!</string>
+    <string name="timer_start">Setting the timer</string>
+    <string name="notification_title">Notification title</string>
+    <string name="notification_text">Notification text</string>
+    <string name="notification_resultt">Notification result</string>
+    <string name="snooze">Snooze</string>
+    <string name="dismiss">Dismiss</string>
+
+    <!-- tab fragment-->
+    <string name="tabButton">Tab</string>
+    <string name="tab">Tab</string>
+
+</resources>
