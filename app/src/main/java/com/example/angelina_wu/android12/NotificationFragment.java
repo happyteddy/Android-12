@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +17,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class NotificationFragment extends Fragment {
-
-
-    /*public static final String ACTION_PING = "com.example.android.pingme.ACTION_PING";
-    public static final String EXTRA_MESSAGE= "com.example.android.pingme.EXTRA_MESSAGE";
-    public static final String EXTRA_TIMER = "com.example.android.pingme.EXTRA_TIMER";*/
 
     private View mView;
     private Intent mServiceIntent;
@@ -41,8 +37,6 @@ public class NotificationFragment extends Fragment {
         return mView;
     }
 
-
-
     public void onPingClick() {
 
         Log.d("NotificationFragment","onPingClick");
@@ -58,21 +52,20 @@ public class NotificationFragment extends Fragment {
         mServiceIntent.setAction(PingService.ACTION_PING);
         Toast.makeText(getActivity(), R.string.timer_start, Toast.LENGTH_SHORT).show();
 
-        // The number of seconds the timer should run.
-
-
-        if(input_seconds == null || input_seconds.trim().equals("")){
+        /*if (input_seconds.trim().equals("")){
             // If user didn't enter a value, sets to default.
             seconds = R.string.seconds_default;
         } else {
             seconds = Integer.parseInt(input_seconds);
-        }
+        }*/
+        seconds = TextUtils.isEmpty(input_seconds.trim()) ? R.string.seconds_default : Integer.parseInt(input_seconds);
+
         int milliseconds = (seconds * 1000);
         mServiceIntent.putExtra(PingService.EXTRA_TIMER, milliseconds);
         // Launches IntentService "PingService" to set timer.
         getActivity().startService(mServiceIntent);
 
-        if(this.getActivity().getCurrentFocus() != null) {
+        if (this.getActivity().getCurrentFocus() != null) {
             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(AppCompatActivity.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(this.getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }

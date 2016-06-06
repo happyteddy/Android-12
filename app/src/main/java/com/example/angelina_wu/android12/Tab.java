@@ -5,11 +5,9 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 
-/**
- * Created by Angelina_Wu on 2016/6/6.
- */
 public class Tab extends FragmentActivity implements ActionBar.TabListener{
 
     AppSectionsPagerAdapter mAppSectionsPagerAdapter;
@@ -20,7 +18,8 @@ public class Tab extends FragmentActivity implements ActionBar.TabListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tab);
 
-        mAppSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        mAppSectionsPagerAdapter = new AppSectionsPagerAdapter(fragmentManager);
 
         final ActionBar actionBar = getActionBar();
         if (actionBar != null) {
@@ -43,6 +42,7 @@ public class Tab extends FragmentActivity implements ActionBar.TabListener{
                                 .setText(s[i])
                                 .setTabListener(this));
             }
+            mViewPager.setCurrentItem(1);
         }
     }
 

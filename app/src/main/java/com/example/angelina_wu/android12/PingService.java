@@ -19,7 +19,6 @@ public class PingService extends IntentService {
     public static final int NOTIFICATION_ID = 001;
     public static final String DEBUG_TAG = "tag";
 
-    private NotificationManager mNotificationManager;
     private String mMessage;
     private int mMillis;
 
@@ -34,20 +33,25 @@ public class PingService extends IntentService {
         mMillis = intent.getIntExtra(EXTRA_TIMER,DEFAULT_TIMER_DURATION);
 
         NotificationManager manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        if(action.equals(ACTION_PING)) {
-            action ();
-        } else if (action.equals(ACTION_SNOOZE)) {
-            manager.cancel(NOTIFICATION_ID);
-            action();
-
-        } else if (action.equals(ACTION_DISMISS)) {
-            manager.cancel(NOTIFICATION_ID);
+        switch(action){
+            case ACTION_PING :
+                action ();
+                break;
+            case ACTION_SNOOZE :
+                manager.cancel(NOTIFICATION_ID);
+                action();
+                break;
+            case ACTION_DISMISS:
+                manager.cancel(NOTIFICATION_ID);
+                break;
+            default:
+                break;
         }
     }
 
     protected void action (){
 
-        mNotificationManager = (NotificationManager)
+        NotificationManager notificationManager = (NotificationManager)
                 getSystemService(NOTIFICATION_SERVICE);
 
         Intent dismissIntent = new Intent(this, PingService.class);
@@ -92,7 +96,7 @@ public class PingService extends IntentService {
             Log.d(DEBUG_TAG, "Sleep failure");
         }
 
-        mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        mNotificationManager.notify(NOTIFICATION_ID, builder.build());
+        notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(NOTIFICATION_ID, builder.build());
     }
 }

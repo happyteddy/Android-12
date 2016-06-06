@@ -25,7 +25,6 @@ public class MainActivity extends Activity {
     public static final int DRAWER_TABS = 1;
     public static final int DRAWER_NOTIFICATION = 2;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +40,7 @@ public class MainActivity extends Activity {
     }
 
     private void initActionBar() {
-        if(getActionBar() != null) {
+        if (getActionBar() != null) {
             getActionBar().setDisplayHomeAsUpEnabled(true);
             getActionBar().setHomeButtonEnabled(true);
         }
@@ -122,13 +121,12 @@ public class MainActivity extends Activity {
     @Override
     public void setTitle(CharSequence title) {
         mTitle = title;
-        if(getActionBar() != null) {
+        if (getActionBar() != null) {
             getActionBar().setTitle(mTitle);
         }
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        //home
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }

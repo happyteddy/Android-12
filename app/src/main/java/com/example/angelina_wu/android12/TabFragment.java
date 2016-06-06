@@ -27,7 +27,7 @@ public class TabFragment extends Fragment {
     }
 
     public void tabOnclick (){
-        //Intent intent = new Intent(getActivity(), Tab.class);
-        //startActivity(intent);
+        Intent intent = new Intent(getActivity(), Tab.class);
+        startActivity(intent);
     }
 }
