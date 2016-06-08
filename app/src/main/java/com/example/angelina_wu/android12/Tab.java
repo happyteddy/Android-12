@@ -2,11 +2,14 @@ package com.example.angelina_wu.android12;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
+import android.view.MenuItem;
 
 public class Tab extends FragmentActivity implements ActionBar.TabListener{
 
@@ -23,7 +26,7 @@ public class Tab extends FragmentActivity implements ActionBar.TabListener{
 
         final ActionBar actionBar = getActionBar();
         if (actionBar != null) {
-            actionBar.setHomeButtonEnabled(false);
+            actionBar.setHomeButtonEnabled(true);
             actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
             mViewPager = (ViewPager) findViewById(R.id.pager);
@@ -44,6 +47,23 @@ public class Tab extends FragmentActivity implements ActionBar.TabListener{
             }
             mViewPager.setCurrentItem(1);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //NavUtils.navigateUpFromSameTask(this);
+                Intent upIntent =new Intent(this, MainActivity.class);
+                upIntent.putExtra("Tab",true);
+                NavUtils.navigateUpTo(this,upIntent);
+//                Intent intent =new Intent(this, MainActivity.class);
+//                intent.putExtra("Tab",true);
+//                startActivity(intent);
+//                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
